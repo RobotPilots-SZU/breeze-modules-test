@@ -1,0 +1,71 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"cmake.preferredGenerators": [
+			"Ninja",
+			"Unix Makefiles"
+		],
+		"kconfig.zephyr.base": "${workspaceFolder}/../../breeze-sdk/zephyr",
+		"devicetree.zephyr": "${workspaceFolder}/../../breeze-sdk/zephyr",
+		"devicetree.modules": [
+			"${workspaceFolder}/../../breeze",
+			"${workspaceFolder}/../../breeze-sdk/zephyr",
+			"${workspaceFolder}/../../breeze-sdk/modules/*/*"
+		]
+	},
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+			{
+				"label": "West: Build",
+				"type": "shell",
+				"command": "west build",
+				"group": {
+					"kind": "build",
+					"isDefault": true
+				}
+			},
+			{
+				"label": "West: Menu Config",
+				"type": "shell",
+				"command": "west",
+				"args": [
+					"build",
+					"-t",
+					"menuconfig"
+				],
+				"problemMatcher": []
+			},
+			{
+				"label": "West: Debugserver (OpenOCD)",
+				"type": "shell",
+				"command": "west",
+				"args": [
+					"debugserver",
+					"-d",
+					"${workspaceFolder}",
+					"-r",
+					"openocd"
+				],
+				"problemMatcher": []
+			},
+			{
+				"label": "West: Debugserver (JLink)",
+				"type": "shell",
+				"command": "west",
+				"args": [
+					"debugserver",
+					"-d",
+					"${workspaceFolder}",
+					"-r",
+					"jlink"
+				],
+				"problemMatcher": []
+			}
+		]
+	}
+}
