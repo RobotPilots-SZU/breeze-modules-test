@@ -17,3 +17,10 @@ project(breeze-app-template)
 target_sources(app PRIVATE
     ./src/main.cpp
 )
+
+target_link_libraries(
+    app
+    PRIVATE
+        breeze_module_msgpipe
+        breeze_module_referee
+)
