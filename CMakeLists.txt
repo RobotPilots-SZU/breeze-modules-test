@@ -12,15 +12,14 @@ endif()
 find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
 
 # define cmake project
-project(breeze-app-template)
+project(breeze-module-referee)
 
 target_sources(app PRIVATE
     ./src/main.cpp
 )
 
-target_link_libraries(
-    app
-    PRIVATE
-        breeze_module_msgpipe
-        breeze_module_referee
+target_link_libraries(app PRIVATE
+    breeze_module_msgpipe
+    breeze_module_referee
+    robotpilots::algorithm
 )
