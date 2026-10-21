@@ -1,1 +1,17 @@
 /* This file will automatic applyed when using damiao_mc02 board */
+/* UART8 发送、UART9 接收；async 接收依赖 DMA */
+&uart8 {
+    status = "okay";
+    current-speed = <115200>;
+    dmas = <&dmamux1 11 82 STM32_DMA_PERIPH_TX>,
+           <&dmamux1 12 81 STM32_DMA_PERIPH_RX>;
+    dma-names = "tx", "rx";
+};
+
+&uart9 {
+    status = "okay";
+    current-speed = <115200>;
+    dmas = <&dmamux1 0 117 STM32_DMA_PERIPH_TX>,
+           <&dmamux1 7 116 STM32_DMA_PERIPH_RX>;
+    dma-names = "tx", "rx";
+};
