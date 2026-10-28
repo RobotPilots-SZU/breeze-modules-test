@@ -1,0 +1,140 @@
+Checks: >
+  -*,
+  bugprone-*,
+  -bugprone-easily-swappable-parameters,
+  -bugprone-narrowing-conversions,
+  bugprone-use-after-move,
+  bugprone-suspicious-string-compare,
+  bugprone-unchecked-optional-access,
+  clang-analyzer-*,
+  cppcoreguidelines-init-variables,
+  cppcoreguidelines-prefer-member-initializer,
+  cppcoreguidelines-pro-type-member-init,
+  cppcoreguidelines-slicing,
+  misc-const-correctness,
+  misc-definitions-in-headers,
+  misc-redundant-expression,
+  misc-unused-parameters,
+  modernize-deprecated-headers,
+  modernize-loop-convert,
+  modernize-make-unique,
+  modernize-redundant-void-arg,
+  modernize-use-bool-literals,
+  modernize-use-default-member-init,
+  modernize-use-emplace,
+  modernize-use-nullptr,
+  modernize-use-override,
+  performance-*,
+  -performance-no-int-to-ptr,
+  -performance-unnecessary-value-param,
+  readability-avoid-const-params-in-decls,
+  readability-braces-around-statements,
+  readability-const-return-type,
+  readability-container-size-empty,
+  readability-delete-null-pointer,
+  readability-duplicate-include,
+  readability-else-after-return,
+  readability-identifier-naming,
+  readability-implicit-bool-conversion,
+  readability-inconsistent-declaration-parameter-name,
+  readability-magic-numbers,
+  readability-make-member-function-const,
+  readability-misplaced-array-index,
+  readability-non-const-parameter,
+  readability-redundant-control-flow,
+  readability-redundant-declaration,
+  readability-redundant-preprocessor,
+  readability-redundant-smartptr-get,
+  readability-redundant-string-cstr,
+  readability-redundant-string-init,
+  readability-simplify-boolean-expr,
+  readability-simplify-subscript-expr,
+  readability-static-accessed-through-instance,
+  readability-static-definition-in-anonymous-namespace,
+  readability-string-compare,
+
+CheckOptions:
+  # ===== 命名规范（项目风格：CamelCase 类型/方法，camelBack 变量/参数，_ 前缀私有成员）=====
+  # --- 类型 ---
+  - key: readability-identifier-naming.ClassCase
+    value: CamelCase
+  - key: readability-identifier-naming.StructCase
+    value: CamelCase
+  - key: readability-identifier-naming.EnumCase
+    value: CamelCase
+  - key: readability-identifier-naming.UnionCase
+    value: CamelCase
+  - key: readability-identifier-naming.TypedefCase
+    value: CamelCase
+  - key: readability-identifier-naming.TypeAliasCase
+    value: CamelCase
+
+  # --- 枚举项（项目风格：CamelCase，非全大写）---
+  - key: readability-identifier-naming.EnumConstantCase
+    value: CamelCase
+  - key: readability-identifier-naming.ScopedEnumConstantCase
+    value: CamelCase
+
+  # --- 函数/方法（项目风格：CamelCase）---
+  - key: readability-identifier-naming.MethodCase
+    value: CamelCase
+  - key: readability-identifier-naming.FunctionCase
+    value: CamelCase
+
+  # --- 局部变量 / 参数（camelBack）---
+  - key: readability-identifier-naming.LocalVariableCase
+    value: camelBack
+  - key: readability-identifier-naming.ParameterCase
+    value: camelBack
+
+  # --- 成员变量 ---
+  - key: readability-identifier-naming.PrivateMemberCase
+    value: camelBack
+  - key: readability-identifier-naming.PrivateMemberPrefix
+    value: '_'
+  - key: readability-identifier-naming.PublicMemberCase
+    value: CamelCase
+  - key: readability-identifier-naming.ProtectedMemberCase
+    value: camelBack
+
+  # --- 常量 / constexpr / 全局 / 静态（补齐 microWAV 类别，统一到项目体系）---
+  - key: readability-identifier-naming.ConstantCase
+    value: camelBack
+  - key: readability-identifier-naming.ConstexprVariableCase
+    value: UPPER_CASE
+  - key: readability-identifier-naming.GlobalConstantCase
+    value: camelBack
+  - key: readability-identifier-naming.StaticConstantCase
+    value: camelBack
+
+  # --- 命名空间 / 宏 ---
+  - key: readability-identifier-naming.NamespaceCase
+    value: lower_case
+  - key: readability-identifier-naming.MacroDefinitionCase
+    value: UPPER_CASE
+
+  # ===== 魔术数字（沿用 microWAV 嵌入式调优）=====
+  - key: readability-magic-numbers.IgnoredIntegerValues
+    value: '0;1;2;3;4;5;6;7;8;16;24;32;40;48;56;64;128;255;256'
+  - key: readability-magic-numbers.IgnorePowersOf2IntegerValues
+    value: 'true'
+  - key: readability-magic-numbers.IgnoreAllFloatingPointValues
+    value: 'true'
+
+  # ===== 隐式 bool 转换（沿用 microWAV：允许位掩码/指针条件）=====
+  - key: readability-implicit-bool-conversion.AllowPointerConditions
+    value: 'true'
+  - key: readability-implicit-bool-conversion.AllowIntegerConditions
+    value: 'true'
+
+  # ===== const 正确性（来自 Checks.txt，关闭指针分析以避 MMIO 误报）=====
+  - key: misc-const-correctness.AnalyzeValues
+    value: 'true'
+  - key: misc-const-correctness.AnalyzeReferences
+    value: 'true'
+  - key: misc-const-correctness.AnalyzeParameters
+    value: 'true'
+  - key: misc-const-correctness.AnalyzePointers
+    value: 'false'
+  - key: misc-const-correctness.WarnPointersAsValues
+    value: 'false'
