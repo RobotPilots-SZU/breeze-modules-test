@@ -20,6 +20,9 @@ manifest:
     - name: algo
       path: algo
       revision: main
+    - name: ramenx
+      path: ramenx
+      revision: main
     - name: zephyr
       remote: upstream
       revision: main
