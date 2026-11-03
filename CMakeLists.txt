@@ -14,19 +14,4 @@ find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
 # define cmake project
 project(breeze-module-referee)
 
-add_library(app_interface INTERFACE)
-target_link_libraries(app_interface
-	INTERFACE
-		ramenx
-		breeze::module::models
-)
-
-target_sources(app PRIVATE
-	./src/referee/referee_test.cpp
-)
-target_link_libraries(app
-	PRIVATE
-		app_interface
-		breeze_module_referee
-		robotpilots::algorithm
-)
+add_subdirectory(src)
